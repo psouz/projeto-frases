@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>FraseApp</title>
+</head>
+<body>
+  <h1>Frase do dia</h1>
+  <p id="frase">Clique no botão para ver uma frase</p>
+  <button onclick="buscarFrase()">Nova frase</button>
+
+  <script>
+    async function buscarFrase() {
+      try {
+const response = await fetch('http://backend:3000/frase');
+        const data = await response.json();
+        document.getElementById('frase').innerText = data.frase;
+      } catch (error) {
+        document.getElementById('frase').innerText = 'Erro ao buscar frase';
+      }
+    }
+  </script>
+</body>
+</html>
